@@ -20,24 +20,26 @@ public class Transaction {
     private String externalTransactionRef;
     private BigDecimal amount;
     private String currency;
-    private String type; // debit or credit
+    private Type type; // debit or credit
     private LocalDateTime transactionDate;
     private String merchantName;
     private String rawDescription;
     private CategorizationMethod categorizationMethod;
     private Instant createdDate;
 
-    public enum Type { DEBIT, CREDIT }
-    public enum CategorizationMethod { AUTO, MANUAL }
+    public enum Type {DEBIT, CREDIT}
+
+    public enum CategorizationMethod {AUTO, MANUAL}
 
     public boolean isDebit() {
-        return type.equals(Type.DEBIT);
+        return type == Type.DEBIT;
     }
 
     public boolean isCredit() {
-        return type.equals(Type.CREDIT);}
+        return type == Type.CREDIT;
     }
 
-    public Transaction categorize(Long categoryId, CategorizedMethod method) {
-        return this.withCategoryId(categoryId).withCategoryMethod(method);
+    public Transaction categorize(Long categoryId, CategorizationMethod method) {
+        return this.withCategoryId(categoryId).withCategorizationMethod(method);
     }
+}

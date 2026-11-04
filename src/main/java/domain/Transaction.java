@@ -1,8 +1,16 @@
 package domain;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.With;
+
 import java.time.LocalDateTime;
 import java.math.BigDecimal;
 import java.time.Instant;
+
+@Getter
+@Builder
+@With
 
 public class Transaction {
 
@@ -19,46 +27,17 @@ public class Transaction {
     private CategorizationMethod categorizationMethod;
     private Instant createdDate;
 
-    public Transaction() {}
+    public enum Type { DEBIT, CREDIT }
+    public enum CategorizationMethod { AUTO, MANUAL }
 
-    public Transaction(Long accountId,
-                       String externalTransactionRef,
-                       BigDecimal amount,
-                       String currency,
-                       String type,
-                       LocalDateTime transactionDate,
-                       String merchantName,
-                       String rawDescription) {
-        this.accountId = accountId;
-        this.externalTransactionRef = externalTransactionRef;
-        this.amount = amount;
-        this.currency = currency;
-        this.type = type;
-        this.transactionDate = transactionDate;
-        this.merchantName = merchantName;
-        this.rawDescription = rawDescription;
-        this.categorizationMethod = CategorizationMethod.UNCATEGORIZED;
-        this.createdDate = Instant.now();
+    public boolean isDebit() {
+        return type.equals(Type.DEBIT);
     }
 
-    //Getters
+    public boolean isCredit() {
+        return type.equals(Type.CREDIT);}
+    }
 
-    public Long getId (Long id) { return id; }
-    public Long getAccountId () { return accountId; }
-    public Long getCategoryId () { return categoryId; }
-    public String getExternalTransactionRef () { return externalTransactionRef; }
-    public BigDecimal getAmount () { return amount; }
-    public String getCurrency () { return currency; }
-    public String getType () { return type; }
-    public LocalDateTime getTransactionDate () { return transactionDate; }
-    public String getMerchantName () { return merchantName; }
-    public String getRawDescription () { return rawDescription; }
-    public CategorizationMethod getCategorizationMethod()  { return categorizationMethod; }
-    public Instant getCreatedDate () { return createdDate; }
-
-}
-
-    //Setters
-
-    public void setId(Long id) {this.id = id; }
-
+    public Transaction categorize(Long categoryId, CategorizedMethod method) {
+        return this.withCategoryId(categoryId).withCategoryMethod(method);
+    }

@@ -20,7 +20,7 @@ public class Transaction {
     private String externalTransactionRef;
     private BigDecimal amount;
     private String currency;
-    private Type type; // debit or credit
+    private Type type; // Debit or Credit
     private LocalDateTime transactionDate;
     private String merchantName;
     private String rawDescription;

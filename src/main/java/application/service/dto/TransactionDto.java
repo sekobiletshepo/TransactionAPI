@@ -24,4 +24,6 @@ public class TransactionDto {
     String rawDescription;
     Transaction.Type transactionType;
     Instant createdDate;
+    Transaction.CategorizationMethod categorizationMethod;
+    String externalTransactionRef;
 }

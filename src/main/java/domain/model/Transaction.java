@@ -27,6 +27,7 @@ public class Transaction {
     private CategorizationMethod categorizationMethod;
     private Instant createdDate;
 
+
     public enum Type {DEBIT, CREDIT}
 
     public enum CategorizationMethod {AUTO, MANUAL}

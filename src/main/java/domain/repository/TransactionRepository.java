@@ -2,6 +2,7 @@ package domain.repository;
 
 import domain.model.Transaction;
 
+import java.lang.ScopedValue;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
@@ -21,12 +22,15 @@ public interface TransactionRepository {
 
    List<CategoryAggregate> aggregateByCategory(TransactionQuery query);
 
+   <T> ScopedValue<T> findById(Long transactionId);
+
    record TransactionQuery(
            Long userId,
            Long accountId,
            Long categoryId,
            LocalDateTime from,
            LocalDateTime to) {}
+
 
     record CategoryAggregate(
             Long categoryId,

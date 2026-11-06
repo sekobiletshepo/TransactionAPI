@@ -14,4 +14,5 @@ public class CategoryBreakdownDto {
         String categoryName;
         BigDecimal total;
         long transactionCount;
+        BigDecimal share;
 }

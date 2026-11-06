@@ -37,5 +37,6 @@ public interface TransactionRepository {
             String categoryName,
             BigDecimal totalDebits, //SUM of debit amounts
             BigDecimal totalCredits, //SUM of credit amounts
+            BigDecimal total,
             Long count) {}
 }

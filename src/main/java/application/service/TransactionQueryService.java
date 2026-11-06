@@ -20,6 +20,8 @@ public class TransactionQueryService {
     private final AccountRepository accountRepository;
     private final TransactionRepository transactionRepository;
 
+    /* Returns transactions visible to the user */
+
     public List<TransactionDto> findTransactions(Long userId, TransactionQuery query) {
         if (query.accountId() != null) {
             assertAccountOwnedByUser(query.accountId(), userId);

@@ -1,6 +1,7 @@
 package domain.model;
 
 import domain.exception.DomainException;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.With;
@@ -8,6 +9,7 @@ import lombok.With;
 @Getter
 @Builder
 @With
+@AllArgsConstructor
 
 public class Category {
 

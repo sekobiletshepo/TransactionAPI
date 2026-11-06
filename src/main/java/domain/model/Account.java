@@ -1,6 +1,7 @@
 package domain.model;
 
 import domain.exception.DomainException;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.With;
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 @Getter
 @Builder
 @With
+@AllArgsConstructor
 
 public class Account {
 

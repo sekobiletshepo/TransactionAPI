@@ -1,6 +1,7 @@
 package domain.model;
 
 import domain.exception.DomainException;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.With;
 import lombok.Getter;
@@ -10,6 +11,7 @@ import java.time.Instant;
 @Getter
 @Builder
 @With
+@AllArgsConstructor
 
 public class SyncRun {
 
@@ -57,4 +59,3 @@ public class SyncRun {
         }
     }
 }
-

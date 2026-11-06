@@ -61,6 +61,5 @@ public class AccountJpaEntity {
     @Column(name = "current_balance", nullable = false, precision = 19, scale = 4)
     private BigDecimal currentBalance;
 
-    public enum AccountType {DEBIT, CREDIT}
+    public enum AccountType {SAVINGS, CREDIT}
 }
-

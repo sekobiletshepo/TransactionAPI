@@ -16,7 +16,7 @@ public class AggregateResponse {
     LocalDate to;
     String currency;
     BigDecimal grandTotal;
-    List<categoryRow> categories;
+    List<CategoryRow> categories;
 
     @Value
     @Builder

@@ -2,7 +2,6 @@ package domain.repository;
 
 import domain.model.Transaction;
 
-import java.lang.ScopedValue;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;

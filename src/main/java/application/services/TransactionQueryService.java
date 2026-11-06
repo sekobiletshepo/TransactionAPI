@@ -1,4 +1,4 @@
-package application.service;
+package application.services;
 
 import application.service.dto.TransactionDto;
 import domain.model.Transaction;

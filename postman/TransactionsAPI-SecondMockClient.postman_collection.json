@@ -1,0 +1,135 @@
+{
+  "info": {
+    "_postman_id": "74bf600e-1718-42eb-afbc-d447d7721222",
+    "name": "TransactionsAPI - Second Mock Client",
+    "description": "A second set of demo requests using the Demo savings account and its Entertainment and Health transactions.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "localhost:8080"
+    },
+    {
+      "key": "accountId",
+      "value": "2"
+    },
+    {
+      "key": "from",
+      "value": "2026-01-01"
+    },
+    {
+      "key": "to",
+      "value": "2026-01-31"
+    }
+  ],
+  "item": [
+    {
+      "name": "Get second client's category totals",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://{{baseUrl}}/api/v1/transactions/aggregates?accountId={{accountId}}&from={{from}}&to={{to}}",
+          "protocol": "http",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "transactions",
+            "aggregates"
+          ],
+          "query": [
+            {
+              "key": "accountId",
+              "value": "{{accountId}}"
+            },
+            {
+              "key": "from",
+              "value": "{{from}}"
+            },
+            {
+              "key": "to",
+              "value": "{{to}}"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Returns second mock account totals', function () {",
+              "    pm.response.to.have.status(200);",
+              "    const body = pm.response.json();",
+              "    pm.expect(body.grandTotal).to.eql(309.99);",
+              "    pm.expect(body.categories).to.have.lengthOf(2);",
+              "    pm.expect(body.categories.map(category => category.categoryName)).to.include.members(['Entertainment', 'Health']);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "response": []
+    },
+    {
+      "name": "Get second client's Entertainment total",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://{{baseUrl}}/api/v1/transactions/aggregates?accountId={{accountId}}&categoryId=3&from={{from}}&to={{to}}",
+          "protocol": "http",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "transactions",
+            "aggregates"
+          ],
+          "query": [
+            {
+              "key": "accountId",
+              "value": "{{accountId}}"
+            },
+            {
+              "key": "categoryId",
+              "value": "3"
+            },
+            {
+              "key": "from",
+              "value": "{{from}}"
+            },
+            {
+              "key": "to",
+              "value": "{{to}}"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Returns the Entertainment total', function () {",
+              "    pm.response.to.have.status(200);",
+              "    const body = pm.response.json();",
+              "    pm.expect(body.grandTotal).to.eql(89.99);",
+              "    pm.expect(body.categories[0].categoryName).to.eql('Entertainment');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "response": []
+    }
+  ]
+}

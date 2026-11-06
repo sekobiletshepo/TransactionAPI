@@ -1,4 +1,4 @@
-package application.service;
+package application.services;
 
 import application.service.dto.CategoryBreakdownDto;
 import domain.repository.TransactionRepository;
@@ -23,13 +23,14 @@ public class AggregationService {
     public List<CategoryBreakdownDto> breakdownByCategory(
             Long userId,
             Long accountId,
+            Long categoryId,
             LocalDate from,
             LocalDate to) {
 
         TransactionQuery query = new TransactionQuery(
                 userId,
                 accountId,
-                null,
+                categoryId,
                 from == null ? null : from.atStartOfDay(),
                 to == null ? null : to.plusDays(1).atStartOfDay());
 
@@ -55,5 +56,4 @@ public class AggregationService {
         return part.divide(whole, 4, RoundingMode.HALF_UP);
     }
 }
-
 

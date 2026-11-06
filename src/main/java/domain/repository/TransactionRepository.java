@@ -22,7 +22,7 @@ public interface TransactionRepository {
 
    List<CategoryAggregate> aggregateByCategory(TransactionQuery query);
 
-   <T> ScopedValue<T> findById(Long transactionId);
+   Optional<Transaction> findById(Long transactionId);
 
    record TransactionQuery(
            Long userId,

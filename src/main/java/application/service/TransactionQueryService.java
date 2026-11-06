@@ -64,16 +64,16 @@ public class TransactionQueryService {
         return TransactionDto.builder()
                 .transactionId(t.getTransactionId())
                 .accountId(t.getAccountId())
-                .externalTransactionRef(t.getExternalTransactionRef())
+                .externalRef(t.getExternalRef())
                 .amount(t.getAmount())
                 .currency(t.getCurrency())
-                .transactionType(t.getType())
+                .direction(t.getDirection())
                 .transactionDate(t.getTransactionDate())
                 .merchantName(t.getMerchantName())
                 .rawDescription(t.getRawDescription())
                 .categoryId(t.getCategoryId())
                 .categorizationMethod(t.getCategorizationMethod())
-                .createdDate(t.getCreatedDate())
+                .createdAt(t.getCreatedAt())
                 .build();
     }
 }

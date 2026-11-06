@@ -22,8 +22,8 @@ public class TransactionDto {
     LocalDateTime transactionDate;
     String merchantName;
     String rawDescription;
-    Transaction.Type transactionType;
-    Instant createdDate;
+    Transaction.Direction direction;
+    Instant createdAt;
     Transaction.CategorizationMethod categorizationMethod;
-    String externalTransactionRef;
+    String externalRef;
 }

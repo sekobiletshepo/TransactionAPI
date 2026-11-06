@@ -17,27 +17,27 @@ public class Transaction {
     private Long transactionId;
     private Long accountId;
     private Long categoryId;
-    private String externalTransactionRef;
+    private String externalRef;
     private BigDecimal amount;
     private String currency;
-    private Type type; // Debit or Credit
+    private Direction direction; // Debit or Credit
     private LocalDateTime transactionDate;
     private String merchantName;
     private String rawDescription;
     private CategorizationMethod categorizationMethod;
-    private Instant createdDate;
+    private Instant createdAt;
 
 
-    public enum Type {DEBIT, CREDIT}
+    public enum Direction {DEBIT, CREDIT}
 
     public enum CategorizationMethod {AUTO, MANUAL}
 
     public boolean isDebit() {
-        return type == Type.DEBIT;
+        return direction == Direction.DEBIT;
     }
 
     public boolean isCredit() {
-        return type == Type.CREDIT;
+        return direction == Direction.CREDIT;
     }
 
     public Transaction categorize(Long categoryId, CategorizationMethod method) {

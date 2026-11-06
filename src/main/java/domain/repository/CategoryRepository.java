@@ -9,7 +9,7 @@ public interface CategoryRepository {
 
     Category save(Category category);
 
-    Optional<Category> findBy (Long categoryId);
+    Optional<Category> findById (Long categoryId);
 
     /* All categories are visible to the user */
     List<Category> findVisibleToUser(Long userId);

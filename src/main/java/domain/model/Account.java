@@ -1,5 +1,6 @@
 package domain.model;
 
+import domain.exception.DomainException;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.With;
@@ -25,12 +26,12 @@ public class Account {
 
     public Account () {
 
-        if (userId == null) throw new IllegalArgumentException("userId is null");
+        if (userId == null) throw new DomainException("USER_ID_NOT_FOUND", null + " User not found");
 
-        if (sourceId == null) throw new  IllegalArgumentException("sourceId is null");
+        if (sourceId == null) throw new DomainException("SOURCE_ID_NOT_FOUND", null + " sourceId not found");
 
-        if (accountId == null) throw new  IllegalArgumentException("accountId is null");
+        if (accountId == null) throw new DomainException("ACCOUNT_ID_NOT_FOUND", null + " Account not found");
 
-        if (currency == null) throw new  IllegalArgumentException("currency is null");
+        if (currency == null) throw new DomainException("CURRENCY_NOT_FOUND", null + " Currency not found");
     }
 }

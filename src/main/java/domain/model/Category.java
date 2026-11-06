@@ -1,5 +1,6 @@
 package domain.model;
 
+import domain.exception.DomainException;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.With;
@@ -14,20 +15,20 @@ public class Category {
     private Long userId;
     private Long parentCategoryId;
     private String name;
-    private Boolean systemDefault;
+    private boolean systemDefault;
 
     public Category () {
         if (categoryId != null && categoryId.equals(parentCategoryId))
-            throw new IllegalArgumentException("categoryId and parentCategoryId can't be the same");
+            throw new DomainException("CATEGORY_ID_NOT_FOUND_OR_EXISTS", null + " Category duplicates/Does not exist");
 
         if (systemDefault && userId != null)
-            throw new IllegalArgumentException("systemDefault and userId cant have a userId");
+            throw new DomainException("USER_ID_NOT_FOUND", null + " UserId is not found");
 
         if (!systemDefault && userId == null)
-            throw new IllegalArgumentException("custom categories must have a userId");
+            throw new DomainException("USER_ID_ALREADY_EXISTS", null + " UserId is null");
 
         if (name == null || name.isBlank())
-            throw new IllegalArgumentException("name is required");
+            throw new DomainException("CATEGORY_NAME_BLANK", null + " Name is required");
     }
 
 }

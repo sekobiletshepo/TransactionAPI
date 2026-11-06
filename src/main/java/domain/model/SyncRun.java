@@ -1,5 +1,6 @@
 package domain.model;
 
+import domain.exception.DomainException;
 import lombok.Builder;
 import lombok.With;
 import lombok.Getter;
@@ -24,16 +25,36 @@ public class SyncRun {
 
     public SyncRun () {
 
-        if (accountId == null) { throw new IllegalArgumentException("accountId is required"); }
+        if (accountId == null) {
+            throw new DomainException(
+                    "ACCOUNT_ID_NOT_FOUND", null + " Account not found");
+        }
 
-        if (startTime == null) { throw new NullPointerException("Start time is required"); }
+        if (startTime == null) {
+            throw new DomainException(
+                    "START_TIME_NOT_FOUND", null + " Start time required");
+        }
 
-        if (endTime != null && endTime.isBefore(startTime)) { throw new NullPointerException("endTime must be >= startTime"); }
+        if (endTime != null && endTime.isBefore(startTime)) {
+            throw new DomainException(
+                    "END_TIME_NULL", null + "End time must be before start time");
+        }
 
-        if  (status == null) { throw new NullPointerException("Status is required"); }
+        if (status == null) {
+            throw new DomainException(
+                    "STATUS_NOT_FOUND", null + " Status not found");
+        }
 
-        if (status == Status.FAILED && errorMessage == null) { throw new NullPointerException("errorMessage is required"); }
+        if (status == Status.FAILED && errorMessage == null) {
+            throw new DomainException(
+                    "ERROR_NOT_FOUND", null + " Error message not found");
+        }
 
-        if (status == Status.IN_PROGRESS && endTime != null) { throw new NullPointerException("IN_PROGRESS sync cannot a endTime"); }
+        if (status == Status.IN_PROGRESS && endTime != null) {
+            throw new DomainException(
+                    "END_TIME_NULL", null + "IN_PROGRESS must be before end time"
+            );
+        }
     }
 }
+

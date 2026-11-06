@@ -1,5 +1,6 @@
 package domain.model;
 
+import domain.exception.DomainException;
 import lombok.Getter;
 import lombok.Builder;
 import lombok.With;
@@ -19,9 +20,9 @@ public class User {
     private LocalDateTime createdDate;
 
     public User () {
-        if (email == null || email.isBlank()) throw new IllegalArgumentException("email is required");
+        if (email == null || email.isBlank()) throw new DomainException("EMAIL_NOT_FOUND", userId + "email is required");
 
-        if (passwordHash == null || passwordHash.isBlank()) throw new IllegalArgumentException("password is required");
+        if (passwordHash == null || passwordHash.isBlank()) throw new DomainException("PASSWORD_HASH_NOT_FOUND", userId + "passwordHash is required");
     }
 }
 
